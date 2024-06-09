@@ -3,6 +3,7 @@ package com.sunbeam.servlets;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
@@ -59,6 +60,11 @@ public class LoginServlet extends HttpServlet {
 			  out.println("<title>Login Failed</title>");
 			  out.println("</head>");
 			  out.println("<body>");
+			  
+			  ServletContext app = this.getServletContext();
+			  String appTitle = app.getInitParameter("AppTitle");
+			  out.printf("<h3>%s</h3>", appTitle);
+			  
 			  out.println("Invalid email or password. <br/><br/>");
 			  out.println("<a href='index.html'>Login Again</a>");
 			  out.println("</body>");

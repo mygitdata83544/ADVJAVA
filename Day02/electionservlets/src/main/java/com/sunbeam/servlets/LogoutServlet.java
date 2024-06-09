@@ -3,6 +3,7 @@ package com.sunbeam.servlets;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
@@ -30,6 +31,10 @@ public class LogoutServlet extends HttpServlet {
 		out.println("<title>Logout</title>");
 		out.println("</head>");
 		out.println("<body>");
+		
+		ServletContext app = this.getServletContext();
+				String appTitle = app.getInitParameter("AppTitle");
+				out.printf("<h3>%s</h3>", appTitle);
 		
 		String userName = "";
 		Cookie[] arr = req.getCookies();
