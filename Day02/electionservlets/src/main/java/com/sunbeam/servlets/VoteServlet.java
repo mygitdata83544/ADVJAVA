@@ -4,12 +4,12 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import org.apache.tomcat.util.http.parser.Cookie;
 
 import com.sunbeam.daos.CandidateDao;
 import com.sunbeam.daos.CandidateDaoImpl;
@@ -65,7 +65,7 @@ public class VoteServlet extends HttpServlet {
 		out.println("<h3>Online Voting</h3>");
 		
 		String userName = "";
-	/*	Cookie[] arr = req.getCookies();
+		Cookie[] arr = req.getCookies();
 		if(arr != null) {
 			for (Cookie c : arr) {
 				if(c.getName().equals("uname")) {
@@ -74,7 +74,7 @@ public class VoteServlet extends HttpServlet {
 				}
 			}
 		}
-		*/
+	
 		out.printf("Hello, %s<hr/>\n", userName);
 		out.println(message);
 		out.println("<a href='logout'>Sign Out</a>");
