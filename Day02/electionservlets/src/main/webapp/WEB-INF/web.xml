@@ -56,6 +56,26 @@
   <url-pattern>/result</url-pattern>
   </servlet-mapping>
   
+  <filter>
+  <filter-name>Security</filter-name>
+  <filter-class>com.sunbeam.filters.SecurityFilter</filter-class>
+  </filter>
+  <filter-mapping>
+  <filter-name>Security</filter-name>
+  <url-pattern>/candlist</url-pattern>
+  <url-pattern>/vote</url-pattern>
+  <url-pattern>/logout</url-pattern>
+  <url-pattern>/result</url-pattern>
+  <url-pattern>/delcand</url-pattern>
+  <url-pattern>/editcand</url-pattern>
+  <url-pattern>/announce*</url-pattern>
+  </filter-mapping>
+  
+  
+  <listener>
+  <listener-class>com.sunbeam.listeners.AppSessionListener</listener-class>
+  </listener>
+  
   <context-param>
   		<param-name>AppTitle</param-name>
   		<param-value>Bharat - Online Voting</param-value>
