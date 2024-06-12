@@ -2,41 +2,51 @@ package com.sunbeam.beans;
 
 import com.sunbeam.daos.CandidateDao;
 import com.sunbeam.daos.CandidateDaoImpl;
-import com.sunbeam.pojos.Candidate;
+import com.sunbeam.daos.UserDao;
+import com.sunbeam.daos.UserDaoImpl;
 
 public class VoteBean {
-	 private int id;;
-	private Candidate candidate;
+	private int candid;
+	private int userid;
 	
 	
 	public VoteBean() {
+	
 	}
 
 
-	public int getId() {
-		return id;
+	public int getCandid() {
+		return candid;
 	}
 
 
-	public void setId(int id) {
-		this.id = id;
+	public void setCandid(int candid) {
+		this.candid = candid;
 	}
 
 
-	public Candidate getCandidate() {
-		return candidate;
+	public int getUserid() {
+		return userid;
 	}
 
 
-	public void setCandidate(Candidate candidate) {
-		this.candidate = candidate;
+	public void setUserid(int userid) {
+		this.userid = userid;
 	}
 	
-	public void voteRecord() {
-		try(CandidateDao candDao = new CandidateDaoImpl()) {
-			candidate = candDao.findById(id);
+	
+	public void vote() {
+		try (CandidateDao candDao = new CandidateDaoImpl()) {
+			candDao.incrementVote(candid);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		try (UserDao userDao = new UserDaoImpl()) {
+			userDao.updateStatus(userid, true);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
+	
+	
 }
