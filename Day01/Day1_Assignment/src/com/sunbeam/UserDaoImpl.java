@@ -22,7 +22,7 @@ public class UserDaoImpl implements AutoCloseable {
 	
 	
 	public User findByEmail(String email) throws SQLException {
-		String sql = "SELECT * FROM user WHERE email = ?";
+		String sql = "SELECT * FROM users WHERE email = ?";
 		try(PreparedStatement stmt = connection.prepareStatement(sql)) {
 			stmt.setString(1, email);
 			ResultSet rs = stmt.executeQuery();
@@ -39,7 +39,7 @@ public class UserDaoImpl implements AutoCloseable {
 	}
 	
 	public User findById(int id) throws SQLException {
-		String sql = "SELECT * FROM user WHERE id = ?";
+		String sql = "SELECT * FROM users WHERE id = ?";
 		try(PreparedStatement stmt = connection.prepareStatement(sql)) {
 			stmt.setInt(1, id);
 			ResultSet rs = stmt.executeQuery();
@@ -56,7 +56,7 @@ public class UserDaoImpl implements AutoCloseable {
 	}
 	
 	public int save(User user) throws SQLException {
-		String sql = "INSERT INTO user(email, password, voted) VALUES(?, ?, ?)";
+		String sql = "INSERT INTO users(email, password, voted) VALUES(?, ?, ?)";
 		try(PreparedStatement stmt = connection.prepareStatement(sql)) {
 			stmt.setString(1, user.getEmail());
 			stmt.setString(2,user.getPassword());
@@ -66,7 +66,7 @@ public class UserDaoImpl implements AutoCloseable {
 	}
 	
 	public int updateStatus(int userId, boolean voted) throws SQLException {
-		String sql = "UPDATE user SET voted = ? WHERE id = ?";
+		String sql = "UPDATE users SET voted = ? WHERE id = ?";
 		try(PreparedStatement stmt = connection.prepareStatement(sql)) {
 			stmt.setBoolean(1, voted);
 			stmt.setInt(2, userId);
@@ -75,7 +75,7 @@ public class UserDaoImpl implements AutoCloseable {
 	}
 	
 	public int updatePassword(int userId, String newPassword) throws SQLException {
-		String sql = "UPDATE user SET password = ? WHERE id = ?";
+		String sql = "UPDATE users SET password = ? WHERE id = ?";
 		try(PreparedStatement stmt = connection.prepareStatement(sql)) {
 			stmt.setString(1, newPassword);
 			stmt.setInt(2, userId);
@@ -84,7 +84,7 @@ public class UserDaoImpl implements AutoCloseable {
 	}
 	
 	public int deleteById(int id) throws SQLException {
-		String sql = "DELETE FROM user WHERE id = ?";
+		String sql = "DELETE FROM users WHERE id = ?";
 		try (PreparedStatement stmt = connection.prepareStatement(sql)) {
 			stmt.setInt(1, id);
 			return stmt.executeUpdate();
@@ -92,7 +92,7 @@ public class UserDaoImpl implements AutoCloseable {
 	}
 	
 	public int update(User user) throws SQLException {
-		String sql = "UPDATE user SET email = ?, password = ?, voted = ? WHERE id = ?";
+		String sql = "UPDATE users SET email = ?, password = ?, voted = ? WHERE id = ?";
 		try (PreparedStatement stmt = connection.prepareStatement(sql)) {
 			stmt.setString(1, user.getEmail());
 			stmt.setString(2, user.getPassword);
